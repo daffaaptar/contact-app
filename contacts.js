@@ -1,5 +1,6 @@
 const { rejects } = require('assert');
 const fs = require('fs');
+const validator = require('validator');
 
 // membuat folder data jika belum ada
 const dirpath = './data';
@@ -25,6 +26,14 @@ const simpanContact = (nama, email, noHP) => {
       console.log('Contact sudah terdaftar, gunakan nama lain!')
       return false;
     }
+
+    //cek email
+    if(email)
+      if(!validator.isEmail(email)) {
+        console.log('Email tidak valid');
+        return false;
+      }
+
 
     contacts.push(contact);
 
